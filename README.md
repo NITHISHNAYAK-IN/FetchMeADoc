@@ -19,7 +19,7 @@ username ="root" <br>
 password = "" <br>
 dbname = "user_data" <br>
 
-Made With <3 [NITHISH NAYAK](https://nithish-nayak.blogspot.com)
+Made With <3 [NITHISH NAYAK](https://nithish-nayak.blogspot.com) <br>
 Contact: nithishnayak.in@gmail.com
 
 License: Creative Commons license family	CC.
