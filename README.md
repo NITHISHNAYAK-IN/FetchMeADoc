@@ -10,7 +10,8 @@ Softwares Used: <br>
 [Geany](https://www.geany.org/) <br>
 [VScode](https://code.visualstudio.com/) <br>
 
-Backend: PHP, MySQL
+Frontend: HTML, CSS, JS, Bootstrap <br>
+Backend: PHP, MySQL <br>
 
 Credentials: <br>
 hostname = "localhost" <br>
