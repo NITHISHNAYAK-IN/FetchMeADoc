@@ -12,6 +12,12 @@ Softwares Used:
 
 Backend: PHP, MySQL
 
+Credentials:
+hostname = "localhost"
+username ="root"
+password = ""
+dbname = "user_data"
+
 Made With <3 [NITHISH NAYAK](nithish-nayak.blogspot.com)
 Contact: nithishnayak.in@gmail.com
 
