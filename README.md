@@ -20,6 +20,6 @@ password = "" <br>
 dbname = "user_data" <br>
 
 Made With <3 [NITHISH NAYAK](https://nithish-nayak.blogspot.com)
-Contact: <a mailto:"nithishnayak.in@gmail.com">nithishnayak.in@gmail.com</a>
+Contact: nithishnayak.in@gmail.com
 
 License: Creative Commons license family	CC.
