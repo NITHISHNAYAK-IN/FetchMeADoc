@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<title>Select Region</title>
+<script>
+    var stateDistricts = {
+        // Your existing stateDistricts data structure here
+        "Andhra Pradesh": {
+        "Visakhapatnam": ["Care Hospital", "Apollo Hospitals", "SevenHills Hospital"],
+        "Vijayawada": ["Ramesh Hospitals", "Andhra Hospitals", "Nagarjuna Hospitals"],
+        "Guntur": ["Guntur Medical College", "NRI General Hospital"],
+        "Nellore": ["Simhapuri Hospitals", "Narayana Medical College Hospital"]
+    },
+    "Arunachal Pradesh": {
+        "Itanagar": ["Ramakrishna Mission Hospital", "Heema Hospital"],
+        "Tawang": ["District Hospital Tawang"],
+        "Pasighat": ["Bakin Pertin Memorial Hospital"]
+    },
+    "Assam": {
+        "Guwahati": ["Nemcare Hospital", "Apollo Hospitals"],
+        "Silchar": ["Silchar Medical College", "Green Heals Hospital"],
+        "Dibrugarh": ["Assam Medical College", "Sanjivani Hospital"]
+    },
+    "Bihar": {
+        "Patna": ["AIIMS Patna", "Ford Hospital"],
+        "Gaya": ["Anugrah Narayan Magadh Medical College and Hospital"],
+        "Bhagalpur": ["Mayaganj Hospital"],
+        "Muzaffarpur": ["Shri Krishna Medical College and Hospital"]
+    },
+    "Chhattisgarh": {
+        "Raipur": ["AIIMS Raipur", "Ramkrishna CARE Hospitals"],
+        "Bilaspur": ["Apollo Hospitals Bilaspur"],
+        "Korba": ["District Hospital Korba"]
+    },
+    "Goa": {
+        "Panaji": ["Goa Medical College"],
+        "Mapusa": ["Mapusa District Hospital"]
+    },
+    "Gujarat": {
+        "Ahmedabad": ["Apollo Hospital", "Civil Hospital"],
+        "Surat": ["SMIMER Hospital", "Apple Hospital"],
+        "Vadodara": ["Sterling Hospital", "Sayaji Hospital"]
+    },
+    "Haryana": {
+        "Gurgaon": ["Medanta The Medicity", "Fortis Healthcare"],
+        "Faridabad": ["Fortis Escorts Hospital", "Metro Heart Institute"]
+    },
+    "Himachal Pradesh": {
+        "Shimla": ["IGMC Hospital", "Ripon Hospital"],
+        "Dharamshala": ["Zonal Hospital Dharamshala"]
+    },
+    "Jharkhand": {
+        "Ranchi": ["Rajendra Institute of Medical Sciences", "Apollo Hospital"],
+        "Jamshedpur": ["Tata Main Hospital"]
+    },
+    "Karnataka": {
+        "Bengaluru": ["Fortis Hospital", "Manipal Hospital"],
+        "Mysore": ["Apollo BGS Hospitals"],
+        "Hubli": ["KIMS Hospital"]
+    },
+    "Kerala": {
+        "Thiruvananthapuram": ["Sree Chitra Tirunal Institute for Medical Sciences and Technology", "KIMS Hospital"],
+        "Kochi": ["Amrita Institute of Medical Sciences", "Lakeshore Hospital"],
+        "kasaragod": ["CHC charvathur","Community health center periye","District Hospital  kanhangad","Government general hospital kasaragod","Taluk Headquartes Hospital Nileshwar","Taluk Hospital Bedadka","Taluk Hospital Panathady","Taluk Hospital Thrikaripur","Taluk Head Quarters Hospital Mangalpady","CHC Muliyar","Tata Trust Government Hospital"
+    ], "kannur": ["Pariyaram Medical College","E K Nayanar Memorial Govt Women And Children Hospital","Chc Pappinissery","Community Health Centre Oduvallithattu","District Hospital","General Hospital Thalassery","Malabar Cancer Centre","RTC 3 Hospital CRPF Peringome","Taluk Hospital Iritty","Taluk Hospital Kuthuparamba","Taluk Hospital Payyanur","Taluk Hospital Peravoor","Taluk Head Quarters Hospital Taliparamba","Urban Dialysis Centre Uruvachal Mattanoor","Taluk Hospital Pazhayangadi"],
+    "Kozhikode":["Taluk Head Quarters Hospital Koyilandy", "Taluk Hospital Nadapuram", "Taluk Hospital Balussery", "Chc Mukkam", "Chc Narikkuni", "Chc Thalakulathur", "District Government Hospital Vadakara", "Government General Hospital Kozhikode", "Govt Taluk Hospital Thamarassery", "Govt. Taluk Hospital Kozhikode", "Govt.Hospital For Women & Children Kottaparamb", "Institute Of Chest Diseases", "Govt.Medical College Kozhikode", "Institute Of Maternal And Child Health Govt. Medical College Kozhikode", "Govt. Medical College Kozhikode", "Taluk Hospital Kuttiady", "Taluk Hospital Perambra"],
+    },
+    "Madhya Pradesh": {
+        "Bhopal": ["AIIMS Bhopal", "Bhopal Memorial Hospital"],
+        "Indore": ["Bombay Hospital", "Sri Aurobindo Institute of Medical Sciences"]
+    },
+    "Maharashtra": {
+        "Mumbai": ["Bombay Hospital", "Lilavati Hospital"],
+        "Pune": ["Ruby Hall Clinic", "Jehangir Hospital"]
+    },
+    "West Bengal": {
+        "Kolkata": ["AMRI Hospitals", "Apollo Gleneagles Hospital"],
+        "Darjeeling": ["Planters Hospital"]
+    }
+    
+        // Add more states and districts as needed
+    };
+
+    function changeDistrict() {
+        var stateSelect = document.getElementById("state");
+        var districtSelect = document.getElementById("district");
+        var selectedState = stateSelect.options[stateSelect.selectedIndex].value;
+
+        districtSelect.innerHTML = "<option value=''>--Select a District--</option>";
+        var districts = stateDistricts[selectedState] || {};
+        for (var district in districts) {
+            var newOption = document.createElement("option");
+            newOption.value = district;
+            newOption.innerHTML = district;
+            districtSelect.appendChild(newOption);
+        }
+        changeHospital(); // Reset hospital dropdown
+    }
+
+    function changeHospital() {
+        var stateSelect = document.getElementById("state");
+        var districtSelect = document.getElementById("district");
+        var hospitalSelect = document.getElementById("hospital");
+        var selectedState = stateSelect.options[stateSelect.selectedIndex].value;
+        var selectedDistrict = districtSelect.options[districtSelect.selectedIndex].value;
+
+        hospitalSelect.innerHTML = "<option value=''>--Select a Hospital--</option>";
+        var hospitals = (stateDistricts[selectedState] || {})[selectedDistrict] || [];
+        hospitals.forEach(function(hospital) {
+            var newOption = document.createElement("option");
+            newOption.value = hospital;
+            newOption.innerHTML = hospital;
+            hospitalSelect.appendChild(newOption);
+        });
+    }
+
+    function showAdditionalButtons() {
+        var hospitalSelected = document.getElementById("hospital").value;
+        var buttonContainer = document.getElementById("buttonContainer");
+        if (hospitalSelected !== "") {
+            buttonContainer.style.display = "block";
+        } else {
+            buttonContainer.style.display = "none";
+            alert("Please select a hospital before searching.");
+        }
+    }
+
+    function generateAndSend() {
+        var randomString = Math.random().toString(36).substring(2, 10); // Generate a random string of length 8
+        var displayElement = document.getElementById("randomNumberDisplay");
+        displayElement.textContent = "Slot ID: " + randomString; // Display the random string
+
+        // Prepare to send the data using AJAX to a PHP server
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "your_server_endpoint.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                alert("Data sent to the server: " + xhr.responseText);
+            }
+        };
+
+        xhr.send("randomString=" + randomString);
+    }
+</script>
+</head>
+<body>
+    <h2>Select State, District, and Hospital</h2>
+    <label for="state">State:</label>
+    <select id="state" onchange="changeDistrict()">
+        <option value="">--Select a State--</option>
+        <option value="Andhra Pradesh">Andhra Pradesh</option>
+       <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+       <option value="Assam">Assam</option>
+       <option value="Bihar">Bihar</option>
+       <option value="Chhattisgarh">Chhattisgarh</option>
+       <option value="Goa">Goa</option>
+       <option value="Gujarat">Gujarat</option>
+       <option value="Haryana">Haryana</option>
+       <option value="Himachal Pradesh">Himachal Pradesh</option>
+       <option value="Jharkhand">Jharkhand</option>
+       <option value="Karnataka">Karnataka</option>
+       <option value="Kerala">Kerala</option>
+       <option value="Madhya Pradesh">Madhya Pradesh</option>
+       <option value="Maharashtra">Maharashtra</option>
+       <option value="Manipur">Manipur</option>
+       <option value="Meghalaya">Meghalaya</option>
+       <option value="Mizoram">Mizoram</option>
+       <option value="Nagaland">Nagaland</option>
+       <option value="Odisha">Odisha</option>
+       <option value="Punjab">Punjab</option>
+       <option value="Rajasthan">Rajasthan</option>
+       <option value="Sikkim">Sikkim</option>
+       <option value="Tamil Nadu">Tamil Nadu</option>
+       <option value="Telangana">Telangana</option>
+       <option value="Tripura">Tripura</option>
+       <option value="Uttar Pradesh">Uttar Pradesh</option>
+       <option value="Uttarakhand">Uttarakhand</option>
+       <option value="West Bengal">West Bengal</option>
+       <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+       <option value="Chandigarh">Chandigarh</option>
+       <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+       <option value="Delhi">Delhi</option>
+       <option value="Lakshadweep">Lakshadweep</option>
+       <option value="Puducherry">Puducherry</option>
+    </select>
+
+    <label for="district">District:</label>
+    <select id="district" onchange="changeHospital()">
+        <option value="">--Select a District--</option>
+    </select>
+
+    <label for="hospital">Hospital:</label>
+    <select id="hospital">
+        <option value="">--Select a Hospital--</option>
+    </select>
+
+    <button id="searchButton" onclick="showAdditionalButtons()">Search</button>
+    <div id="buttonContainer" style="display:none;">
+        <button id="b1" onclick="generateAndSend()">Generate Slot</button>
+        <form action="data.php" method="post">
+			<p id="randomNumberDisplay" ></p> <!-- Element to display the random string -->
+			<label for="uname"><b>Enter The Slot ID</b></label>
+    <p id="randomNumberDisplay" name="tknnum" id="tknnum"></p> 
+          <button type="submit">Book Slot</button>
+
+        
+    </div>
+
+    
+    </form>
+      
+</body>
+</html>

@@ -1,0 +1,62 @@
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 20px;
+    padding: 20px;
+}
+
+/* Container styles for form elements */
+label, select, button {
+    display: block;
+    margin: 10px 0;
+}
+
+/* Styling the select dropdown */
+select {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+/* Styling for buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Container for additional buttons */
+#buttonContainer {
+    margin-top: 20px;
+}
+
+/* Styling specific to the search button */
+#searchButton {
+    background-color: #008CBA;
+}
+
+#searchButton:hover {
+    background-color: #007B9A;
+}
+
+/* Layout adjustments for labels to align text */
+label {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* Header styling */
+h2 {
+    color: #333;
+}
